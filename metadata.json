@@ -1,0 +1,6 @@
+{
+  "name": "CertiVault — Portal Cifrado de Certificados y Auditoría",
+  "description": "Plataforma empresarial de consulta y descarga de certificados laborales y de estudio con almacenamiento cifrado AES-256 y auditoría forense de trazabilidad.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
