@@ -26,22 +26,19 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Configurar entorno Node.js LTS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
+      - name: Configurar entorno Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Instalar dependencias verificadas
-        run: npm install --no-audit --no-fund
+        run: bun install --frozen-lockfile
 
       - name: Verificación estática de tipos e integridad (TypeScript)
-        run: npm run lint
+        run: bun run lint
 
       - name: Compilar versión de producción blindada (sin sourcemaps)
         env:
           NODE_ENV: production
-        run: npm run build
+        run: bun run build
 
       - name: Auditoría de seguridad del artefacto compilado
         run: |
@@ -57,7 +54,7 @@ jobs:
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Empaquetar artefacto cifrado para despliegue
+      - name: Empaquetar artefacto para despliegue
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
